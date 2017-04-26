@@ -1,7 +1,7 @@
 -- App Launcher BETA v0.1 --
 color.loadpalette()
 color.shine = color.new(255,255,255,100) -- new color shine!
-back = image.load("back.png")
+-- back = image.load("sce_sys/livearea/contents/bg0.png")
 logo = image.load("sce_sys/icon0.png")
 over = 1
 buttons.interval(8,8)
@@ -11,6 +11,7 @@ local pos = 1;
 local result,result_rmv = 0,0
 local icons = {}
 local list = {data = {}, len = 0}
+local bkg = {}
 function reload_list()
 	pos = 1;
 	icons = {}
@@ -31,32 +32,40 @@ function reload_list()
 		end
 		local img = nil
 		local info = nil
+		local bg = nil
 		if list.data[i].path:sub(1,10) == "ux0:pspemu" then
 			img = game.geticon0(string.format("%s/eboot.pbp",list.data[i].path))
 			info = game.info(string.format("%s/eboot.pbp",list.data[i].path))
+			bg = game.getpic0(string.format("%s/eboot.pbp",list.data[i].path))
 		else
 			img = image.load(string.format("%s/sce_sys/icon0.png",list.data[i].path))
 			info = game.info(string.format("%s/sce_sys/param.sfo",list.data[i].path))
+			bg = image.load(string.format("%s/sce_sys/pic0.png",list.data[i].path))
 		end
 		if info and info.TITLE then
 			list.data[i].title = info.TITLE
 		end
 		icons[i] = img
+		bkg[i] = bg
 	end
 end
 reload_list()
 while true do
 	buttons.read()
 	if back then back:blit(0,0) end
+	if bg then back:blittint(0,0,color.shadow) end
 	screen.print(480,10,"Game Launcher (Apps - Bubbles)",1,color.white,color.blue,__ACENTER)
 	screen.print(950,10,os.date("%I:%M %p"),1,color.white,0x0,__ARIGHT)
-	screen.print(150,10,"Battery " + batt.lifepercent () + "%",1,color.white,0x0,__ARIGHT)
+	screen.print(145,10,"Battery " + batt.lifepercent () + "%",1,color.white,0x0,__ARIGHT)
 	screen.print(950,30,"Apps: " + list.len,1,color.red,0x0,__ARIGHT)
 	if list.len > 0 then
 		if buttons.up and pos > 1 then pos -= 1 end
 		if buttons.down and pos < list.len then pos += 1 end
 		if buttons.cross then
 			game.launch(list.data[pos].id)
+		end	
+		if buttons.circle then 
+			game.launch("VITASHELL")	
 		end
 		if icons[pos] then
 			screen.clip(950-64,405+64, 128/2)
@@ -67,6 +76,15 @@ while true do
 			draw.fillrect(950-128,35, 128, 128, color.white:a(100))
 			draw.rect(950-128,35, 128, 128, color.white)
 		end
+		if bkg[pos] then
+			bkg[pos]:center()
+			bkg[pos]:blit(0,0)
+			screen.clip()
+		else
+			draw.fillrect(0,0,960,544, color.shadow:a(100))
+			draw.rect(0,0,960,544, color.shadow)
+		end
+			
 		local y = 75
 		for i=pos,math.min(list.len,pos+15) do
 			if i == pos then
@@ -77,7 +95,8 @@ while true do
 			--screen.print(600,y,list[i].cat or "unk")
 			y += 20
 		end
-		screen.print(10,495,"Press X to Launch " + list.data[pos].title,1,color.magenta)
+		screen.print(10,495,"Press X to Launch " + list.data[pos].title,1,color.yellow)
+		screen.print(10,515,"Press O to Launch " + "VitaShell",1,color.cyan)
 	else
 		screen.print(10,30,"Vacio o error?")
 	end

@@ -51,9 +51,14 @@ function reload_list()
 end
 reload_list()
 while true do
+	if bkg[pos] then
+			bkg[pos]:center()
+			bkg[pos]:blit(480,272)
+			screen.clip()
+		end
 	buttons.read()
 	if back then back:blit(0,0) end
-	if bg then back:blittint(0,0,color.shadow) end
+	if bg then back:blit(0,0) end
 	screen.print(480,10,"Game Launcher (Apps - Bubbles)",1,color.white,color.blue,__ACENTER)
 	screen.print(950,10,os.date("%I:%M %p"),1,color.white,0x0,__ARIGHT)
 	screen.print(145,10,"Battery " + batt.lifepercent () + "%",1,color.white,0x0,__ARIGHT)
@@ -66,7 +71,7 @@ while true do
 		end	
 		if buttons.circle then 
 			game.launch("VITASHELL")	
-		end
+		end		
 		if icons[pos] then
 			screen.clip(950-64,405+64, 128/2)
 			icons[pos]:center()
@@ -75,16 +80,7 @@ while true do
 		else
 			draw.fillrect(950-128,35, 128, 128, color.white:a(100))
 			draw.rect(950-128,35, 128, 128, color.white)
-		end
-		if bkg[pos] then
-			bkg[pos]:center()
-			bkg[pos]:blit(0,0)
-			screen.clip()
-		else
-			draw.fillrect(0,0,960,544, color.shadow:a(100))
-			draw.rect(0,0,960,544, color.shadow)
-		end
-			
+		end	
 		local y = 75
 		for i=pos,math.min(list.len,pos+15) do
 			if i == pos then

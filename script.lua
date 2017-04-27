@@ -1,8 +1,9 @@
 -- App Launcher BETA v0.1 --
 color.loadpalette()
 color.shine = color.new(255,255,255,100) -- new color shine!
--- back = image.load("sce_sys/livearea/contents/bg0.png")
-logo = image.load("sce_sys/icon0.png")
+BG = image.load("sce_sys/livearea/contents/arrow.png")
+BG1 = image.load("sce_sys/livearea/contents/bg0.png")
+-- logo = image.load("sce_sys/icon0.png")
 over = 1
 buttons.interval(8,8)
 buttons.analogtodpad(60)
@@ -55,13 +56,15 @@ while true do
 			bkg[pos]:center()
 			bkg[pos]:blit(480,272)
 			screen.clip()
-		end
+	else
+		image.blit(BG1,0,0)
+	end
 	buttons.read()
 	if back then back:blit(0,0) end
 	if bg then back:blit(0,0) end
 	screen.print(480,10,"Game Launcher (Apps - Bubbles)",1,color.white,color.blue,__ACENTER)
 	screen.print(950,10,os.date("%I:%M %p"),1,color.white,0x0,__ARIGHT)
-	screen.print(145,10,"Battery " + batt.lifepercent () + "%",1,color.white,0x0,__ARIGHT)
+	screen.print(135,10,"Battery " + batt.lifepercent () + "%",1,color.white,0x0,__ARIGHT)
 	screen.print(950,30,"Apps: " + list.len,1,color.red,0x0,__ARIGHT)
 	if list.len > 0 then
 		if buttons.up and pos > 1 then pos -= 1 end
@@ -77,14 +80,12 @@ while true do
 			icons[pos]:center()
 			icons[pos]:blit(950-128 + 64,405 + 64)
 			screen.clip()
-		else
-			draw.fillrect(950-128,35, 128, 128, color.white:a(100))
-			draw.rect(950-128,35, 128, 128, color.white)
 		end	
 		local y = 75
 		for i=pos,math.min(list.len,pos+15) do
 			if i == pos then
-				screen.print(10,y,"->")
+				-- screen.print(10,y,"->",1,color.red)
+			image.blit(BG,10,75)				
 			end
 			screen.print(40,y,'#'+string.format("%03d",i)+' '+list.data[i].title or "unk",1,color.white,color.orange)
 			screen.print(800,y,list.data[i].id or "unk",1,color.white,color.yellow)

@@ -70,8 +70,8 @@ while true do
 	if list.len > 0 then
 		if buttons.up and pos > 1 then pos -= 1 end
 		if buttons.down and pos < list.len then pos += 1 end
-		if buttons.l and pos > 15 then pos -= 15 end
 		if buttons.l and pos < 15 then pos = 1 end
+		if buttons.l and pos > 15 then pos -= 15 end
 		if buttons.r and pos < list.len then pos += 15 end
 		if buttons.r and pos > list.len then pos = list.len end
 		if buttons.cross then

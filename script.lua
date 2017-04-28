@@ -3,6 +3,7 @@ color.loadpalette()
 color.shine = color.new(255,255,255,100) -- new color shine!
 BG = image.load("sce_sys/livearea/contents/arrow.png")
 BG1 = image.load("sce_sys/livearea/contents/bg0.png")
+-- font.setdefault("sce_sys/livearea/contents/font.ttf")
 -- logo = image.load("sce_sys/icon0.png")
 over = 1
 buttons.interval(8,8)
@@ -69,6 +70,10 @@ while true do
 	if list.len > 0 then
 		if buttons.up and pos > 1 then pos -= 1 end
 		if buttons.down and pos < list.len then pos += 1 end
+		if buttons.l and pos > 15 then pos -= 15 end
+		if buttons.l and pos < 15 then pos = 1 end
+		if buttons.r and pos < list.len then pos += 15 end
+		if buttons.r and pos > list.len then pos = list.len end
 		if buttons.cross then
 			game.launch(list.data[pos].id)
 		end	
@@ -82,7 +87,7 @@ while true do
 			screen.clip()
 		end	
 		local y = 75
-		for i=pos,math.min(list.len,pos+15) do
+		for i=pos,math.min(list.len,pos+14) do
 			if i == pos then
 				-- screen.print(10,y,"->",1,color.red)
 			image.blit(BG,10,75)				
@@ -92,7 +97,8 @@ while true do
 			--screen.print(600,y,list[i].cat or "unk")
 			y += 20
 		end
-		screen.print(10,495,"Press X to Launch " + list.data[pos].title,1,color.yellow)
+		screen.print(10,475,"Press L/R for Prev/Next Page ",1,color.yellow)
+		screen.print(10,495,"Press X to Launch " + list.data[pos].title,1,color.magenta)
 		screen.print(10,515,"Press O to Launch " + "VitaShell",1,color.cyan)
 	else
 		screen.print(10,30,"Vacio o error?")

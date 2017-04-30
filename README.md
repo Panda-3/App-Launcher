@@ -12,9 +12,6 @@ Thanks to OneLua and their interpreter/samples.
 http://onelua.x10.mx/
 
 Things To Do/Planned:
-- Background Picture
-- Bubble Icon
-- Live Area Wallpaper
 - Sound FX/Music
 - FTP 
 - More ideas to come...

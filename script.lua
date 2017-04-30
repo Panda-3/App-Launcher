@@ -1,8 +1,8 @@
 -- Custom Launcher BETA v0.1 --
 color.loadpalette()
--- BG = image.load("sce_sys/livearea/contents/arrow.png")
-BG2 = image.load("sce_sys/livearea/contents/back.png")
-BG1 = image.load("sce_sys/livearea/contents/bg0.png")
+-- BG = image.load("app0:/arrow.png")
+BG2 = image.load("app0:/resources/back.png")
+BG1 = image.load("app0:/resources/bg0.png")
 over = 1
 buttons.interval(8,8)
 buttons.analogtodpad(60)
@@ -74,22 +74,22 @@ while true do
 		if buttons.r and pos > list.len then pos = list.len end
 		if buttons.cross then
 			game.launch(list.data[pos].id)
-		end	
-		if buttons.circle then 
-			game.launch("VITASHELL")	
+		end
+		if buttons.circle then
+			game.launch("VITASHELL")
 		end
 		if icons[pos] then
 			screen.clip(950-64,405+64, 128/2)
 			icons[pos]:center()
 			icons[pos]:blit(950-128 + 64,405 + 64)
 			screen.clip()
-		end	
+		end
 		local y = 75
 		for i=pos,math.min(list.len,pos+14) do
 					if i == pos then
 				-- screen.print(10,y,"->",1,color.red)
 			-- image.blit(BG2,0,0)
-			end	
+			end
 			screen.print(40,y,'#'+string.format("%03d",i)+' '+list.data[i].title or "unk",1,color.white,color.orange)
 			if list.data[i].flag == 0 then
 				screen.print(10,30,list.data[i].location or "unk",1,color.green)

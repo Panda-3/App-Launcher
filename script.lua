@@ -1,6 +1,5 @@
 -- Custom Launcher BETA v0.1 --
 color.loadpalette()
--- BG = image.load("app0:/arrow.png")
 BG2 = image.load("app0:/resources/back.png")
 BG1 = image.load("app0:/resources/bg0.png")
 over = 1
@@ -87,8 +86,6 @@ while true do
 		local y = 75
 		for i=pos,math.min(list.len,pos+14) do
 					if i == pos then
-				-- screen.print(10,y,"->",1,color.red)
-			-- image.blit(BG2,0,0)
 			end
 			screen.print(40,y,'#'+string.format("%03d",i)+' '+list.data[i].title or "unk",1,color.white,color.orange)
 			if list.data[i].flag == 0 then

@@ -6,44 +6,19 @@
 	<gate>
 		<startup-image>startup.png</startup-image>
 	</gate>
-
-	<frame id="frame1" multi="o" autoflip="0" >
-		<liveitem>
-			<image align="left" width="99" height="99" origin="frame">frame_icon.png</image>
-
-			<text origin="image" align="outside-right">
-				<str color="#ffffff" size="20"> Documentation </str>
-			</text>
-
-			<target>http://ONElua.x10.mx</target>
-
-		</liveitem>
-	</frame>
-
 	<frame id="frame3" multi="o" autoflip="0" >
 		<liveitem>
 			<text origin="background" line-align="center" margin-bottom="1">
 				<str size="25" bold="on" shadow="on">　</str>
-				<str size="40" bold="on" shadow="on">Sample VPK for ONElua Vita</str>
+				<str size="40" bold="on" shadow="on">Custom Launcher - v0.1</str>
 				<str size="25" bold="on" shadow="on">　
 				</str>
 				<str size="21" bold="on" shadow="on">
-					®2016 Team ONElua - ONElua.x10.mx
+					Custom Launcher for PS Vita
+					Created by VampireX - github.com/vampirexxxx/
 				</str>
 			</text>
-			<lang>es</lang>
-		</liveitem>
-		<liveitem>
-			<text origin="background" line-align="center" margin-bottom="1">
-				<str size="30" bold="on" shadow="on">　</str>
-				<str size="40" bold="on" shadow="on">Sample VPK for ONElua Vita</str>
-				<str size="30" bold="on" shadow="on">　
-				</str>
-				<str size="21" bold="on" shadow="on">
-					®2016 Team ONElua - ONElua.x10.mx
-				</str>
-			</text>
-			<exclude-lang>es</exclude-lang>
+			<lang>en</lang>
 		</liveitem>
 	</frame>
 </livearea>
